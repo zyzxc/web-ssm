@@ -30,7 +30,27 @@ public class UserController {
     List<User> showUser(HttpServletRequest request, Model model) {
         log.info("查询所有用户信息");
         List<User> userList = userService.getAllUser();
-        //model.addAttribute("userList",userList);
         return userList;
+    }
+
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public int addUser(User user){
+        log.info("添加用户信息！");
+        return userService.add(user);
+    }
+
+    @RequestMapping("/getUserByEmailOrPhone")
+    @ResponseBody
+    public User getUserByPhoneOrEmail(String emailOrPhone){
+        log.info("根据邮箱或电话查询用户信息！");
+        return userService.getUserByPhoneOrEmail(emailOrPhone);
+    }
+
+    @RequestMapping("/getUserById")
+    @ResponseBody
+    public  User getUserById(Long userId){
+        log.info("根据用户Id查询用户信息！");
+        return userService.getUserById(userId);
     }
 }

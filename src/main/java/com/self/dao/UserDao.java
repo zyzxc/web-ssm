@@ -19,5 +19,5 @@ public interface UserDao {
 
     List<User> selectAllUser();
 
-    User add();
+    int add(User user);
 }

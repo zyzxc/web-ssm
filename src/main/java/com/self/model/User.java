@@ -15,7 +15,7 @@ public class User {
     public Date birthDay;
     public String address;
     public String email;
-    public int phoneNum;
+    public String phoneNum;
 
     public int getId() {
         return id;
@@ -81,11 +81,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 }

@@ -15,5 +15,5 @@ public interface UserService {
 
     User getUserById(Long userId);
 
-    User add();
+    int add(User user);
 }
