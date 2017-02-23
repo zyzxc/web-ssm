@@ -7,21 +7,21 @@ import java.util.Date;
  */
 public class User {
 
-    private Long id;
-    private String userName;
-    private String userPhone;
-    private String userEmail;
-    private String userPwd;
-    private String pwdSalt;
-    private Date createTime;
-    private Date modifyTime;
-    private Short isDelete;
+    public int id;
+    public String userName;
+    public String passWord;
+    public String sex;
+    public int age;
+    public Date birthDay;
+    public String address;
+    public String email;
+    public int phoneNum;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,59 +33,59 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getSex() {
+        return sex;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getPwdSalt() {
-        return pwdSalt;
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public void setPwdSalt(String pwdSalt) {
-        this.pwdSalt = pwdSalt;
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Date getModifyTime() {
-        return modifyTime;
+    public String getEmail() {
+        return email;
     }
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Short getIsDelete() {
-        return isDelete;
+    public int getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setIsDelete(Short isDelete) {
-        this.isDelete = isDelete;
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
     }
 }

@@ -11,7 +11,9 @@ public interface UserService {
 
     List<User> getAllUser();
 
-    User getUserByPhoneOrEmail(String emailOrPhone, Short state);
+    User getUserByPhoneOrEmail(String emailOrPhone);
 
     User getUserById(Long userId);
+
+    User add();
 }

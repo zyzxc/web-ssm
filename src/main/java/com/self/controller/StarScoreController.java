@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
  * Created by zhangxingcai on 2017/2/22 0022.
  */
 @Controller
-@RequestMapping("starScore")
+@RequestMapping("/star")
 public class StarScoreController {
-    @RequestMapping("view/starScore")
-    public String toStar(HttpServletRequest request, HttpServletResponse response){
-        return "starScore/view/demo";
+    @RequestMapping("/view/demo")
+    public String toStar(){
+        return "starScore/demo";
     }
 }
