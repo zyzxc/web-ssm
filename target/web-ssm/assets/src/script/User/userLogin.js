@@ -12,7 +12,7 @@ define(function (require, exports, module) {
                     url: loginUrl,
                     data: {userName: username, passWord: password},
                     success: function (data) {
-                        if (data == true) {
+                        if (data) {
                             cookie.set("userInfo", JSON.stringify(data), 2);
                             showInfo("登录成功！", 1);
                             window.location.href = "http://localhost:8081/user/view/list";

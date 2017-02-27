@@ -95,12 +95,12 @@ define(function (require, exports, module) {
                         data: userInfo,
                         success: function (data) {
                             if (data) {
-                                $.XYTipsWindow.removeBox();
+
                             }
                         }
                     })
                 }
-            })
+            });
         }
     }
     exports.init = function () {

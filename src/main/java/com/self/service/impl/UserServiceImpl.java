@@ -28,7 +28,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int add(User user) {
-        return userDao.add(user);
+        String userName = user.userName;
+        User addUser = userDao.getUserByName(userName);
+        String oldName = addUser.userName;
+        if (oldName.equals(userName)) {
+            return 0;
+        } else {
+            return userDao.add(user);
+        }
     }
 
     @Override
