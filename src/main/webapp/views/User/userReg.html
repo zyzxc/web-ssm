@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <link rel="stylesheet" href="/assets/src/script/User/css/reg.css"/>
+    <script type="text/javascript" src="/assets/src/script/sea.js"></script>
+    <script type="text/javascript" src="/assets/src/script/config.js"></script>
+    <script src="/assets/src/script/User/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/assets/src/script/cookie.js"></script>
+    <script src="/assets/src/script/User/js/jquery.XYTipsWindow.2.8.js"></script>
+    <title>注册</title>
+
+    <script src="/assets/src/script/User/js/formValidator_min.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="/assets/src/script/User/js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+</head>
+
+<body>
+
+<!--注册开始-->
+<div class="reg">
+    <dl>
+        <dt class="f14 b">个人基本信息</dt>
+        <dd><span class="title">姓名：</span>
+            <input class="reg_input" name="userName" id="userName" type="text"/>
+            <span id="t_UserNameTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">密码：</span>
+            <input class="reg_input" id="t_UserPass" name="passWord" type="password"/>
+            <span id="t_UserPassTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">确认密码：</span>
+            <input class="reg_input"
+                   type="password" id="t_RePass" name="rePwd"/>
+            <span id="t_RePassTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">性别：</span>
+            <input type="radio" id="Sex_Man" name="sex" value="0" checked="CHECKED"/>
+            <label for="Sex_Man"> 男</label>
+            <input type="radio" id="Sex_Woman" name="sex" value="1"/>
+            <label for="Sex_Woman"> 女</label>　
+        </dd>
+        <dd><span class="title">年龄：</span>
+            <input class="reg_input" name="age" type="text" id="age"/>
+            <span id="t_AgeTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">邮箱：</span>
+            <input class="reg_input" name="email" type="text" id="t_Email"/>
+            <span id="t_EmailTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">出生年月：</span>
+            <input class="reg_input" name="birthDay" type="text" id="t_BirthDay"/>
+            <span id="t_BirthDayTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">住址：</span>
+            <input class="reg_input" name="address" type="text" id="t_Address"/>
+            <span id="t_AddressTip" class="onshow"></span>
+        </dd>
+        <dd><span class="title">联系电话：</span>
+            <input class="reg_input" name="phoneNum" type="text" id="t_PhoneNum"/>
+            <span id="t_PhoneNumTip" class="onshow"></span>
+        </dd>
+
+    </dl>
+    <div class="f_reg_but"><input id="btnReg" name="button" value="免费注册" class="r_button"/><span
+            class="clew_txt">如果您已有帐号，可<a href="#">直接登录</a></span></div>
+</div>
+<!--注册结束-->
+<script type="text/javascript">
+    $(function () {
+        seajs.use('{dir}/User/userReg', function (a) {
+            a.init();
+        });
+    })
+</script>
+</body>
+</html>

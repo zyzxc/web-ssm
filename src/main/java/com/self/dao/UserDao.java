@@ -20,4 +20,8 @@ public interface UserDao {
     List<User> selectAllUser();
 
     int add(User user);
+
+    User getUserByName(@Param("username") String username);
+
+    User checkLogin(String username, String password);
 }

@@ -1,6 +1,7 @@
 package com.self.service;
 
 import com.self.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface UserService {
     User getUserById(Long userId);
 
     int add(User user);
+
+    User getUserByName(@Param("username") String username);
+
+    User checkLogin(String username, String password);
 }

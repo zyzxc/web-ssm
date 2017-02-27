@@ -3,6 +3,7 @@ package com.self.service.impl;
 import com.self.dao.UserDao;
 import com.self.model.User;
 import com.self.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +31,34 @@ public class UserServiceImpl implements UserService {
         return userDao.add(user);
     }
 
+    @Override
+    public User getUserByName(@Param("userName") String userName) {
+        return userDao.getUserByName(userName);
+    }
+
+    /**
+     * 验证登录
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @Override
+    public User checkLogin(String username, String password) {
+        User user = userDao.getUserByName(username);
+        if (user != null && user.getPassWord().equals(password)) {
+            return user;
+        }
+        return null;
+    }
+
     public User getUserByPhoneOrEmail(String emailOrPhone) {
         return userDao.selectUserByPhoneOrEmail(emailOrPhone);
     }
-    
+
     public List<User> getAllUser() {
         return userDao.selectAllUser();
     }
+
+
 }

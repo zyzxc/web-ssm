@@ -1,0 +1,55 @@
+<html>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>登录(Login)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/src/script/User/css/reset.css">
+    <link rel="stylesheet" href="/assets/src/script/User/css/supersized.css">
+    <link rel="stylesheet" href="/assets/src/script/User/css/style.css">
+    <link rel="stylesheet" href="/assets/src/script/User/css/box_style.css">
+    <!-- Javascript -->
+    <script type="text/javascript" src="/assets/src/script/sea.js"></script>
+    <script type="text/javascript" src="/assets/src/script/config.js"></script>
+    <script src="/assets/src/script/User/js/jquery-1.8.2.min.js"></script>
+    <script src="/assets/src/script/User/js/supersized.3.2.7.min.js"></script>
+    <script src="/assets/src/script/User/js/supersized-init.js"></script>
+    <script src="/assets/src/script/User/js/scripts.js"></script>
+    <script src="/assets/src/script/User/js/jquery.XYTipsWindow.2.8.js"></script>
+    <script type="text/javascript" src="/assets/src/script/cookie.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/common.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="/assets/src/script/User/js/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="page-container">
+    <h1>登录(Login)</h1>
+    <div>
+        <input type="text" name="userName" class="username" placeholder="请输入您的用户名！">
+        <input type="password" name="passWord" class="password" placeholder="请输入您的用户密码！">
+        <button type="button" class="submit_button" style="width:174px;float: left" id="btnLogin">登录</button>
+        <button type="button" class="submit_button" style="width:174px;" id="btnReg">注册</button>
+        <div class="error"><span>+</span></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        seajs.use('{dir}/User/userLogin', function (a) {
+            a.init();
+        });
+    })
+</script>
+</body>
+</html>
+

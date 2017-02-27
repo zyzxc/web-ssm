@@ -1,16 +1,17 @@
 package com.self.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by zxc on 2017/02/22.
  */
-public class User {
+public class User implements Serializable {
 
     public int id;
     public String userName;
     public String passWord;
-    public String sex;
+    public int sex;
     public int age;
     public Date birthDay;
     public String address;
@@ -41,11 +42,11 @@ public class User {
         this.passWord = passWord;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

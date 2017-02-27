@@ -25,6 +25,21 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @RequestMapping("view/login")
+    public String toUserLogin() {
+        return "User/userLogin";
+    }
+
+    @RequestMapping("view/list")
+    public String toUserList() {
+        return "User/userList";
+    }
+
+    @RequestMapping("view/reg")
+    public String toUserReg() {
+        return "User/userReg";
+    }
+
     @RequestMapping("/showUser")
     @ResponseBody
     List<User> showUser(HttpServletRequest request, Model model) {
@@ -35,22 +50,29 @@ public class UserController {
 
     @RequestMapping("/addUser")
     @ResponseBody
-    public int addUser(User user){
+    public int addUser(User user) {
         log.info("添加用户信息！");
         return userService.add(user);
     }
 
     @RequestMapping("/getUserByEmailOrPhone")
     @ResponseBody
-    public User getUserByPhoneOrEmail(String emailOrPhone){
+    public User getUserByPhoneOrEmail(String emailOrPhone) {
         log.info("根据邮箱或电话查询用户信息！");
         return userService.getUserByPhoneOrEmail(emailOrPhone);
     }
 
     @RequestMapping("/getUserById")
     @ResponseBody
-    public  User getUserById(Long userId){
+    public User getUserById(Long userId) {
         log.info("根据用户Id查询用户信息！");
         return userService.getUserById(userId);
+    }
+
+    @RequestMapping("login")
+    @ResponseBody
+    public User checkLogin(String userName,String passWord) throws Exception{
+        log.info("用户登录！");
+        return userService.checkLogin(userName,passWord);
     }
 }

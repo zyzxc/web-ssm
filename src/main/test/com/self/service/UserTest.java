@@ -12,15 +12,15 @@ import java.util.Date;
 /**
  * Created by zhangxingcai on 2017/2/22 0022.
  */
-public class UserTest extends BaseTest {
+    public class UserTest extends BaseTest {
     @Autowired UserService userService;
 
     @Test
     public void main() {
         User user = new User();
-        user.setUserName("admin");
+        user.setUserName("admin1");
         user.setPassWord("admin");
-        user.setSex("男");
+        user.setSex(0);
         user.setAge(26);
         user.setBirthDay(new Date("1992/06/01"));
         user.setAddress("厦门市");

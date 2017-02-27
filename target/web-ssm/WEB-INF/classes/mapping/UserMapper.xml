@@ -6,7 +6,7 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="userName" property="userName" jdbcType="VARCHAR"/>
         <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
-        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="SMALLINT"/>
         <result column="age" property="age" jdbcType="SMALLINT"/>
         <result column="birthDay" property="birthDay" jdbcType="DATE"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
@@ -26,6 +26,14 @@
 
     <select id="selectAllUser" resultMap="UserBaseMap">
         SELECT * FROM user
+    </select>
+    <select id="getUserByName" resultMap="UserBaseMap">
+        SELECT * FROM user
+        WHERE userName=#{username}
+    </select>
+    <select id="checkLogin" resultMap="UserBaseMap">
+        SELECT * FROM user
+        WHERE userName=#{username} AND passWord=#{password}
     </select>
     <insert id="add" parameterType="com.self.model.User">
         insert into user (userName,passWord,sex,age,birthDay,address,email,phoneNum) values (#{userName},#{passWord},#{sex},#{age},#{birthDay},#{address},#{email},#{phoneNum})

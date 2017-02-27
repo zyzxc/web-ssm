@@ -1,0 +1,122 @@
+/**
+ * list.css
+ * Created by Yzx on 2016-2-24.
+ */
+.y-dialog-list .lists-special {
+  height: 198px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f1f1f1;
+  overflow-y: auto; }
+.y-dialog-list .lists-verify {
+  height: 198px;
+  overflow-y: auto; }
+.y-dialog-list .lists-verify .list {
+  padding: 0; }
+.y-dialog-list .lists-verify .column-verify {
+  border: 0;
+  background-color: #fff; }
+.y-dialog-list .list {
+  line-height: 32px;
+  padding: 0 10px;
+  border-bottom: 1px solid #f1f1f1; }
+.y-dialog-list .list:after {
+  clear: both;
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  visibility: hidden; }
+.y-dialog-list .list.odd {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #f1f1f1; }
+.y-dialog-list .list.odd .column-verify {
+  background-color: #f7f7f7; }
+.y-dialog-list .list .text-outer {
+  width: 205px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all; }
+.y-dialog-list .list .select {
+  width: 82px; }
+.y-dialog-list .list .select-column {
+  width: 166px; }
+.y-dialog-list .list .column-special {
+  text-align: left;
+  padding: 0;
+  border: 0;
+  background-color: transparent; }
+
+/**
+ * specialList.css
+ * Created by Yzx on 2016-2-29.
+ */
+.text-border-outer {
+  display: inline-block;
+  width: 190px; }
+.text-border-content {
+  border: 0;
+  display: inline-block;
+  width: 156px;
+  height: 19px;
+  line-height: 19px;
+  background: transparent; }
+
+.text-line-little {
+  border: 0;
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  height: 19px;
+  line-height: 19px;
+  padding: 3px 2px 2px 2px;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent; }
+
+.column-verify {
+  height: 32px;
+  line-height: 32px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #f1f1f1;
+  border-top: 1px solid #f1f1f1; }
+.column-verify .text-order, .column-verify .text-verify, .column-verify .text-link {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+.column-verify .text-order {
+  width: 40px;
+  text-indent: 10px; }
+.column-verify .text-verify {
+  width: 360px; }
+.column-verify .text-link {
+  width: 60px;
+  color: #3d9ced; }
+.column-verify .icon-grid {
+  position: relative;
+  top: 6px; }
+
+.column-special {
+  text-align: right;
+  padding: 0 10px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #f1f1f1;
+  border-top: 1px solid #f1f1f1; }
+.column-special .text-little {
+  width: 24px;
+  text-align: center; }
+.column-special .checkbox {
+  float: left;
+  height: 32PX;
+  line-height: 32px;
+  margin-right: 3px; }
+.column-special .btn-dialog-gray {
+  position: relative;
+  top: 5px; }
+
+/*# sourceMappingURL=specialList.css.map */
