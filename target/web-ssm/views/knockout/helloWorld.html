@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+</head>
+<body>
+<span data-bind="text:helloWorld"></span>
+<script type="text/javascript">
+    var ViewModel = {
+        helloWorld: 'Hello World !'
+    };
+    ko.applyBindings(ViewModel);
+</script>
+</body>
+</html>
