@@ -4,8 +4,66 @@
     <meta charset="UTF-8">
     <title>checkBox</title>
     <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery-1.8.0.min.js"></script>
 </head>
 <body>
-
+<table align="center">
+    <thead>
+    <tr>
+        <th width="3%"></th>
+        <th width="20%">新闻名称</th>
+        <th width="20%">作者</th>
+    </tr>
+    </thead>
+    <tbody data-bind="foreach: News"><!--foreach:News是用来获取数组数据-->
+    <tr>
+        <td>
+            <input type="checkbox" data-bind="checked: checks"><!--checked绑定checkbox-->
+        </td>
+        <td data-bind="text: Title"></td><!--text 绑定显示对应的title值-->
+        <td data-bind="text: UsersName"></td>
+    </tr>
+    </tbody>
+    <tr>
+        <td><input type="checkbox" data-bind="checked: selectall"></td>
+        <td>全选</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(function () {
+        var viewModel = {
+            selectall: ko.observable(false),
+            News: ko.observableArray(
+                    [
+                        {checks: false, Title: 'this is Title', UsersName: 'cccccc'},
+                        {checks: false, Title: 'hahahhahaha', UsersName: 'ssssss'}
+                    ]
+            )
+        };
+        //监听
+        viewModel.selectall.subscribe(function (nvalue) { //subscribe是监控属性显示订阅,通过nvalue判断全选是选中，还是没选中
+            if (nvalue) {                               //如果选中
+                var s = viewModel.News();
+                viewModel.News([]);
+                for (var i = 0; i < s.length; i++) {
+                    s[i].checks = true;                //则将列表中的check设置为true
+                }
+                viewModel.News(s);
+            } else {                                  //如果没选
+                var s = viewModel.News();
+                viewModel.News([]);
+                for (var i = 0; i < s.length; i++) {
+                    s[i].checks = false;              //则将列表中的check设置为false
+                }
+                viewModel.News(s);
+            }
+        });
+        ko.applyBindings(viewModel);
+    });
+</script>
 </body>
 </html>

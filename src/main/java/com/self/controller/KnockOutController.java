@@ -28,4 +28,9 @@ public class KnockOutController {
     public String ToHelloWorld() {
         return "knockout/helloWorld";
     }
+
+    @RequestMapping("/view/checkbox")
+    public String ToCheckBox() {
+        return "knockout/checkbox";
+    }
 }
