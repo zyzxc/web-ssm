@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>with绑定</title>
+    <script src="/assets/dist/js/knockout-3.4.2.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 data-bind="text: city"></h1>
+<p data-bind="with: coords">
+    Latitude: <span data-bind="text: latitude"> </span>, Longitude: <span data-bind="text: longitude"> </span>
+</p>
+<script>
+    function Model() {
+        var self = this;
+        city = ko.observable("London");
+        coords = ko.observable({
+            latitude: 51.5001524,
+            longitude: -0.1262362
+        });
+    }
+    var model = new Model();
+    ko.applyBindings(model);
+</script>
+</body>
+</html>

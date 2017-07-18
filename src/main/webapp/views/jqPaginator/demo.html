@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>演示：PHP+jQuery实现Ajax分页效果</title>
+    <meta name="keywords" content="jPaginate, jquery插件"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/dist/css/paginate.css"/>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../assets/dist/js/jquery.paginate.js"></script>
+    <script type="text/javascript">
+        //分页查询开始
+        $(document).ready(function () {
+            getDataList(0, null);
+        });
+
+        var rows = 10;
+        var page = 1;
+        var initFlag = true;
+
+        function getDataList(currPage, jg) {
+
+            $.ajax({
+                url: "page",
+                type: "post",
+                dataType: 'json',
+                data: {rows: rows, page: currPage + 1},
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (response) {
+                    if (response.result) {
+                        if (response.data != null && response.data != "" && response.total != undefined && response.total > 0) {
+                            if (initFlag) {
+                                $("#Pagination").pagination(
+                                        response.total,
+                                        {
+                                            items_per_page: rows,
+                                            num_edge_entries: 1,
+                                            num_display_entries: 8,
+                                            callback: getDataList//回调函数
+                                        });
+                                initFlag = false;
+                            }
+                            $("#listData").html("");
+                            loadDataList(response.data);
+                        } else {
+                            //暂无数据
+                        }
+                    } else {
+                        //暂无数据
+                    }
+                }
+            });
+        }
+
+        }
+        //分页查询结束
+    </script>
+</head>
+
+<body>
+<body>
+<div class="clearbox">
+    <div class="x-box">
+        <h2><a>表格</a></h2>
+        <table id="listData"></table>
+    </div>
+    <div id="Pagination" class="pagination"></div>
+</div>
+</body>
+</body>
+</html>

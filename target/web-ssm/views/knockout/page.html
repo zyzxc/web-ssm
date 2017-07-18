@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <script type="text/javascript" src="/assets/dist/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/knockout-grid.js"></script>
+</head>
+
+<body>
+
+<div data-bind="simpleGrid: gridViewModel"></div>
+
+<button data-bind='click: function() { items.push({ name: "New item", sales: 0, price: 100 }) }'>
+    Add item
+</button>
+
+<button data-bind="click: sortByName">
+    Sort by name
+</button>
+
+<button data-bind="click: function() { gridViewModel.currentPageIndex(0) }">
+    Jump to first page
+</button>
+<script>
+    var myModel = {
+        items: ko.observableArray([
+            {isc: new ko.observable(true), name: "Well-Travelled Kitten", sales: 352, price: 75.95},
+            {isc: new ko.observable(false), name: "Speedy Coyote", sales: 89, price: 190.00},
+            {isc: new ko.observable(false), name: "Furious Lizard", sales: 152, price: 25.00},
+            {isc: new ko.observable(true), name: "Indifferent Monkey", sales: 1, price: 99.95},
+            {isc: new ko.observable(false), name: "Brooding Dragon", sales: 0, price: 6350},
+            {isc: new ko.observable(false), name: "Ingenious Tadpole", sales: 39450, price: 0.35},
+            {isc: new ko.observable(false), name: "Optimistic Snail", sales: 420, price: 1.50}
+        ]),
+
+        sortByName: function () {
+            this.items.sort(function (a, b) {
+                return a.name < b.name ? -1 : 1;
+            });
+        }
+    };
+
+    myModel.gridViewModel = new ko.simpleGrid.viewModel({
+        data: myModel.items,
+        columns: [
+            {headerText: "Item Name", rowText: "name"},
+            {headerText: "Sales Count", rowText: "sales"},
+            {
+                headerText: "Price", rowText: function (item) {
+                return "$" + item.price.toFixed(2)
+            }
+            }
+        ],
+        pageSize: 4
+    });
+
+    ko.applyBindings(myModel);
+</script>
+</body>
+</html>

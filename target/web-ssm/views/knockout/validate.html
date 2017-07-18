@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KO验证框架</title>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/knockout.validation.min.js"></script>
+</head>
+<body>
+<fieldset>
+    <legend>添加商品</legend>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.name)
+    </div>
+    <div class="editor-field">
+        <input data-bind='value: name'/>
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.price)
+    </div>
+    <div class="editor-field">
+        <input data-bind='value: price'/><!-- uniqueName: true表示表单的name是唯一的-->
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryId)
+        </div>
+    </div>
+    <div class="editor-field">
+        <input data-bind='value: CategoryId'/>
+    </div>
+    <p>
+        <input type="button" value="Create" data-bind="click:Register"/>
+    </p>
+</fieldset>
+<script type="text/ecmascript">
+    var Product = function () {
+        var self = this;
+        self.CategoryId = ko.observable().extend({
+            required: true
+        });
+
+        self.price = ko.observable().extend({
+            required: {params: true, message: "请输入价格"},
+            min: {params: 1, message: "请输入大于1的整数"},
+            max: 100
+        });
+        self.name = ko.observable().extend({
+            minLength: 2,
+            maxLength: {params: 30, message: "名称最大长度为30个字符"},
+            required: {
+                params: true,
+                message: "请输入名称",
+            }
+        });
+        self.Email = ko.observable().extend({
+            required: {
+                params: true,
+                message: "Please enter your email"
+            },
+            email: {
+                params: true,
+                message: "The format is not correct"
+            }
+        });
+        self.Register = function () {
+            self.errors = ko.validation.group(self);
+            if (self.isValid()) {
+                alert('data sent');
+            } else {
+                self.errors.showAllMessages();
+            }
+        };
+    }
+    var viewModel = new Product();
+    ko.applyBindings(viewModel);
+</script>
+</body>
+</html>

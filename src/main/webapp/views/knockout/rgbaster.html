@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RGBaster</title>
+    <script type="text/javascript" src="../../assets/dist/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../../assets/dist/js/rgbaster.js"></script>
+    <script type="text/javascript" src="../../assets/dist/js/knockout-3.4.2.js"></script>
+
+</head>
+<body>
+<div class="tab-pannel"
+     style="background:center top no-repeat rgb(255, 255, 255); position: absolute; z-index: 0;"
+     data-bind="style: { backgroundImage: 'url(\'' + imgUrl + '\'' },attr:{imgUrl:imgUrl}">
+</div>
+<script type="text/javascript">
+
+    var viewModel = {
+        imgUrl: ko.observable()
+    }
+    ko.applyBindings(viewModel);
+
+    var imgUrl = "http://localhost:8081/assets/dist/images/alibaba.png";
+    viewModel.imgUrl(imgUrl);
+</script>
+</body>
+</html>

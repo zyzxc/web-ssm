@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../assets/dist/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../../assets/dist/js/rgbaster.js"></script>
+</head>
+<body>
+<div>
+    <div class="tab-pannel"
+         style="background:url('http://192.168.1.75:6060/phip-img/upload/ebbb0270-5cc8-4eff-9ea2-b7f6540db026.jpg') center top no-repeat; position: absolute; z-index: 0;height: 400px;width: 100%;">
+    </div>
+    <img src="http://192.168.1.75:6060/phip-img/upload/ebbb0270-5cc8-4eff-9ea2-b7f6540db026.jpg" id="img"
+         style="display: none;">
+</div>
+<script type="text/javascript">
+    var img = $("#img").attr("src");
+    RGBaster.colors(img, {
+        success: function (payload) {
+            //console.log("颜色" + JSON.stringify(payload["dominant"]));
+            $(".tab-pannel").css({"background-color": payload["dominant"]});
+            /*// payload.dominant是主色，RGB形式表示
+             // payload.secondary是次色，RGB形式表示
+             // payload.palette是调色板，含多个主要颜色，数组
+             console.log(payload.dominant);
+             console.log(payload.secondary);
+             console.log(payload.palette);*/
+        }
+    });
+</script>
+</body>
+</html>

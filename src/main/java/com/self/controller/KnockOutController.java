@@ -33,4 +33,59 @@ public class KnockOutController {
     public String ToCheckBox() {
         return "knockout/checkbox";
     }
+
+    @RequestMapping("/view/validate")
+    public String ToValidate() {
+        return "knockout/validate";
+    }
+
+    @RequestMapping("/view/task")
+    public String ToTask() {
+        return "knockout/task";
+    }
+
+    @RequestMapping("/view/pageSize")
+    public String ToPageSize() {
+        return "knockout/pageSize";
+    }
+
+    @RequestMapping("/view/foreach")
+    public String ToForEach() {
+        return "knockout/foreach";
+    }
+
+    @RequestMapping("/view/ifnot")
+    public String ToIfNot() {
+        return "knockout/ifnot";
+    }
+
+    @RequestMapping("/view/with")
+    public String ToWith() {
+        return "knockout/with";
+    }
+
+    @RequestMapping("page")
+    public String ToPage() {
+        return "knockout/page";
+    }
+
+    @RequestMapping("chart")
+    public String ToChart() {
+        return "knockout/chart";
+    }
+
+    @RequestMapping("template")
+    public String ToTemplate() {
+        return "knockout/template";
+    }
+
+    @RequestMapping("echarts")
+    public String ToECharts() {
+        return "knockout/echarts";
+    }
+
+    @RequestMapping("rgbaster")
+    public String ToRGBaster() {
+        return "knockout/rgbaster";
+    }
 }

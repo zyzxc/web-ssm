@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+<!-- 标题 -->
+<h3>Tasks</h3>
+<!-- 增加任务的表单，包含名称输入框和提交按钮 -->
+<form data-bind="submit: addTask">
+    Add task: <input data-bind="value: newTaskText" placeholder="What needs to be done?"/>
+    <button type="submit">Add</button>
+</form>
+<!-- 任务列表，包括完成选择框、任务名称、删除用链接 -->
+<ul data-bind="foreach: tasks, visible: tasks().length > 0">
+    <li>
+        <input type="checkbox" data-bind="checked: isDone"/>
+        <input data-bind="value: title, disable: isDone"/>
+        <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+    </li>
+</ul>
+<!-- 待完成任务的数量 -->
+You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+<!-- 待完成任务的数量为0时的提示信息 -->
+<span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span>
+<!-- 保存的按钮 -->
+<button data-bind="click: save">Save</button>
+<!-- 保存json到服务器 -->
+<form action="/tasks/saveform" method="post">
+    <textarea name="tasks" data-bind="value: ko.toJSON(tasks)"></textarea>
+    <button type="submit">Save</button>
+</form>
+<script type="text/javascript">
+    // 任务类对象，名称、是否完成
+    function Task(data) {
+        this.title = ko.observable(data.title);
+        this.isDone = ko.observable(data.isDone);
+    }
+    // 视图模型ViewModel
+    function TaskListViewModel() {
+        // 视图模型的数据，任务列表、新建任务的名称、待完成的任务
+        var self = this;
+        self.tasks = ko.observableArray([]);
+        self.newTaskText = ko.observable();
+        self.incompleteTasks = ko.computed(function () {
+            return ko.utils.arrayFilter(self.tasks(), function (task) {
+                return !task.isDone()
+            });
+        });
+        // 视图模型的操作，添加任务、删除任务、保存到服务器
+        self.addTask = function () {
+            self.tasks.push(new Task({title: this.newTaskText()}));
+            self.newTaskText("");
+        };
+        self.removeTask = function (task) {
+            self.tasks.remove(task)
+        };
+        self.save = function () {
+            $.ajax("/tasks", {
+                data: ko.toJSON({tasks: self.tasks}),
+                type: "post", contentType: "application/json",
+                success: function (result) {
+                    alert(result)
+                }
+            });
+        };
+        // 从服务器读取任务数据，并转换为任务实体
+        $.getJSON("/tasks", function (allData) {
+            var mappedTasks = $.map(allData, function (item) {
+                return new Task(item)
+            });
+            self.tasks(mappedTasks);
+        });
+    }
+    // 激活Knockout.js
+    ko.applyBindings(new TaskListViewModel());
+</script>
+</body>
+</html>
