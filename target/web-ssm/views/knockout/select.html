@@ -8,7 +8,45 @@
 <style>
     li {
         list-style: none;
-        line-height:26px;
+        line-height: 26px;
+    }
+
+    li label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+        color: #8c8c8c;
+        vertical-align: middle;
+    }
+
+    .inputtext {
+        width: 182px;
+        background: url(../../assets/dist/images/bg-text-gray.gif) repeat-x 0 0;
+        border: 0;
+        border: 1px solid #d3d3d3;
+        height: 21px;
+        line-height: 21px;
+        padding: 0 3px;
+    }
+
+    .btn-opera {
+        border: 1px solid #1488ff;
+        background: #11a1fd;
+        color: #ffffff;
+        border-radius: 2px;
+        padding: 3px 5px;
+        line-height: 26px;
+    }
+
+    .simulate-select {
+        position: relative;
+        display: inline-block;
+        width: 88px;
+        height: 23px;
+        border: 1px solid #d3d3d3;
+        vertical-align: middle;
+        background: url(../../assets/dist/images/bg-text-gray.gif) repeat-x 0 0;
+        padding: 0 3px;
     }
 </style>
 <body>
@@ -53,20 +91,20 @@
         </ul>
     </div>
     <div style="clear: both;"><a href="javascript:;" data-bind="click:add">添加银行</a></div>
-    <div data-bind="with:selectItem,visible:editing()">
+    <div data-bind="with:selectItem,visible:editing()" style="width: 400px;">
         <ul>
             <li><b>正在<span data-bind="if:UserBankID==0">新建</span><span data-bind="if:UserBankID>0">编辑</span>银行...</b>
             </li>
-            <li>银行开户名：<input type="text" data-bind="value:BankAccountName"/></li>
-            <li>开户行所在城市：
-                <select data-bind="
+            <li><label>银行开户名：</label><input class="inputtext" type="text" data-bind="value:BankAccountName"/></li>
+            <li><label>开户行所在城市：</label>
+                <select class="simulate-select" data-bind="
                                  options: areaData,
                                  optionsText: 'Name',
                                  value:Province,
                                  optionsCaption: '选择省份'">
                 </select>
                 <span data-bind="with:Province">
-                    <select data-bind="
+                    <select class="simulate-select" data-bind="
                                    visible:$parent.Province,
                                    options: Sons,
                                    optionsText: 'Name',
@@ -76,7 +114,7 @@
                 </span>
 
                 <span data-bind="with:City">
-                    <select data-bind="
+                    <select class="simulate-select" data-bind="
                                   visible:$parent.City,
                                   options: Sons,
                                   optionsText: 'Name',
@@ -86,13 +124,15 @@
                 </span>
 
             </li>
-            <li>银行名称：<input type="text" data-bind="value:BankName"/></li>
-            <li>支行名称：<input type="text" data-bind="value:BankAddress"/></li>
-            <li>银行账号：<input type="text" data-bind="value:BankAccountNumber"/>
+            <li><label>银行名称：</label><input class="inputtext" type="text" data-bind="value:BankName"/></li>
+            <li><label>支行名称：</label><input class="inputtext" type="text" data-bind="value:BankAddress"/></li>
+            <li><label>银行账号：</label><input class="inputtext" type="text" data-bind="value:BankAccountNumber"/>
             </li>
         </ul>
-        <input type="button" data-bind="click:$parent.save" value="保存"/>
-        <input type="button" data-bind="click:$parent.cancle" value="取消"/>
+        <ul style="float:right;margin-right: 30px;">
+            <input type="button" class="btn-opera" data-bind="click:$parent.save" value="保存"/>
+            <input type="button" class="btn-opera" data-bind="click:$parent.cancle" value="取消"/>
+        </ul>
     </div>
 </div>
 <script type="text/ecmascript">
@@ -188,10 +228,8 @@
 
         //移除同时提交
         self.removeLine = function (o) {
-
             self.bankList.remove(o);
-
-        }
+        };
         //添加
         self.add = function () {
             self.editing(true);
@@ -204,7 +242,6 @@
             o.IsAdd = false;
             self.selectItem(o);
         };
-
         //post
         self.save = function (o) {
             /*数据传递时，使用字符串或者数值，而在knockoutjs显示时，使用完整对象*/
@@ -216,7 +253,6 @@
             self.editing(false);
             /*地域显示为文本*/
             self.bankList.push(o);//将编辑后的实体添加
-
         };
 
         self.cancle = function (o) {
