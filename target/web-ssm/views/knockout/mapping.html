@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/knockout.mapping-2.4.1.js"></script>
+</head>
+<body>
+<div id="model2">
+    <input type="text" data-bind="value:serverTime"/>
+    <input type="text" data-bind="value:numUsers,valueUpdate: 'afterkeydown'"/>
+    <input type="text" data-bind="value:realUsers"/>
+</div>
+<script>
+    var data = {
+        serverTime: '2017-08-14',
+        numUsers: 3,
+        realUsers: 3
+    }
+    var M = ko.mapping.fromJS(data);//data对象里所有属性添加ko属性
+    M.realUsers = ko.computed(function () {
+        return M.numUsers() ? M.numUsers() * 2 : 0;
+    });
+    ko.applyBindings(M, document.getElementById("model2"));
+</script>
+</body>
+</html>

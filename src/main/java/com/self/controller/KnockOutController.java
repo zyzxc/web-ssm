@@ -93,4 +93,14 @@ public class KnockOutController {
     public String ToTreeList() {
         return "knockout/treeList";
     }
+
+    @RequestMapping("mapping")
+    public String ToMapping() {
+        return "knockout/mapping";
+    }
+
+    @RequestMapping("select")
+    public String ToSelect() {
+        return "knockout/select";
+    }
 }
