@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/assets/dist/js/knockout-3.4.2.js"></script>
+</head>
+<body>
+<div class="component-div" data-bind="template:{name:'ko-temp',foreach: ko_vue_data()}"></div>
+<script type="text/html" id="ko-temp">
+    <div class="tem">
+        <div class="tem-p">
+            <div data-bind="event:{click:$root.toggleClick}"><i
+                    data-bind="style:{'visibility':number!=0?'visible':'hidden'},text:number"></i><span
+                    data-bind="text:name"></span></div>
+            <!--绑定数据-->
+            <div><span data-bind="text:energyone"></span></div>
+
+            <div><span data-bind="text:energytwo"></span></div>
+
+            <div><span data-bind="text:energythree"></span></div>
+            <!--绑定class，使数值显示出区分-->
+            <div><span data-bind="css:{isgreen:huanRatio<0,isred:huanRatio>100},text:huanRatio+'%'"></span></div>
+
+            <div><span data-bind="css:{isgreen:tongRatio<0,isred:tongRatio>100},text:tongRatio+'%'"></span></div>
+
+        </div>
+        <!--ko if:isFolder-->
+        <div class="tem-c" data-bind="template:{name:'ko-temp',foreach: child}"></div>
+        <!--/ko-->
+    </div>
+</script>
+<script>
+    /*数据*/
+    var ko_vue_data = [
+        {
+            name: "总能耗",
+            number: "0",
+            energyone: 14410,
+            energytwo: 1230,
+            energythree: 1230,
+            huanRatio: -36.8,
+            tongRatio: 148.5,
+            child: [
+                {
+                    name: "租户电耗",
+                    number: "1",
+                    energyone: 14410,
+                    energytwo: 1230,
+                    energythree: 1230,
+                    huanRatio: -36.8,
+                    tongRatio: 148.5,
+                    child: []
+                },
+                {
+                    name: "公共用电",
+                    number: "2",
+                    energyone: 14410,
+                    energytwo: 1230,
+                    energythree: 1230,
+                    huanRatio: -36.8,
+                    tongRatio: 148.5,
+                    child: [
+                        {
+                            name: "暖通空调",
+                            number: "2.1",
+                            energyone: 14410,
+                            energytwo: 1230,
+                            energythree: 1230,
+                            huanRatio: -36.8,
+                            tongRatio: 148.5,
+                            child: [
+                                {
+                                    name: "冷站",
+                                    number: "2.1.1",
+                                    energyone: 14410,
+                                    energytwo: 1230,
+                                    energythree: 1230,
+                                    huanRatio: -36.8,
+                                    tongRatio: 148.5,
+                                    child: [
+                                        {
+                                            name: "冷水机组",
+                                            number: "2.1.1.1",
+                                            energyone: 14410,
+                                            energytwo: 1230,
+                                            energythree: 1230,
+                                            huanRatio: -36.8,
+                                            tongRatio: 148.5,
+                                            child: []
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "热力站",
+                                    number: "2.1.2",
+                                    energyone: 14410,
+                                    energytwo: 1230,
+                                    energythree: 1230,
+                                    huanRatio: -36.8,
+                                    tongRatio: 148.5,
+                                    child: []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    function addAttribute(dst) {
+        for (var i = 0; i < dst.length; i++) {
+            var temp = dst[i];
+            temp.isFolder = ko.observable(true);//默认展开
+            for (var j = 0; j < temp.child.length; j++) {
+                addAttribute(temp.child);
+            }
+        }
+    }
+    addAttribute(ko_vue_data);
+    /*视图模型*/
+    function viewModel() {
+        var self = this;
+        self.ko_vue_data = ko.observableArray(ko_vue_data);
+        self.toggleClick = function (event) {//展开折叠效果
+            window.event ? window.event.cancelBubble = true : event.stopPropagation();
+            var isFolder = event.isFolder();
+            if (isFolder) {
+                event.isFolder(false);
+            } else {
+                event.isFolder(true);
+            }
+        }
+    }
+    ko.applyBindings(new viewModel());
+</script>
+</body>
+</html>

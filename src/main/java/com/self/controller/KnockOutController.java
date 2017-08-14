@@ -88,4 +88,9 @@ public class KnockOutController {
     public String ToRGBaster() {
         return "knockout/rgbaster";
     }
+
+    @RequestMapping("treeList")
+    public String ToTreeList() {
+        return "knockout/treeList";
+    }
 }
